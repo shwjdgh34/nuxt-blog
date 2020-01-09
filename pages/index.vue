@@ -4,41 +4,36 @@
       <h1>Get the latest tech news!</h1>
     </section>
     <section class="featured-posts">
-      <nuxt-link :to="`/posts/${1}`" class="post-preview">
-        <article>
-          <!--save images to assets-->
-          <div
-            class="post-thumbnail"
-            style="background-image: url('https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg')"
-          ></div>
-          <div class="post-content">
-            <h1>Post Title</h1>
-            <p>Preview Text</p>
-          </div>
-        </article>
-      </nuxt-link>
-      <nuxt-link :to="`/posts/${2}`" class="post-preview">
-        <article>
-          <div
-            class="post-thumbnail"
-            style="background-image: url('https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/b1426e1a5cc005b19ba22962482931b0.jpg')"
-          ></div>
-          <div class="post-content">
-            <h1>Post Title</h1>
-            <p>Preview Text</p>
-          </div>
-        </article>
-      </nuxt-link>
+      <PostPreview
+        id="1"
+        title="post 1"
+        descript="this is the first post"
+        thumbnail="https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg"
+      />
+      <PostPreview
+        id="2"
+        title="post 2"
+        descript="this is the second post"
+        thumbnail="https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/b1426e1a5cc005b19ba22962482931b0.jpg"
+      />
     </section>
   </div>
 </template>
-
+<script>
+import PostPreview from '@/components/Posts/PostPreview.vue'
+export default {
+  components: {
+    PostPreview
+  }
+}
+</script>
 <style scoped>
 .intro {
   height: 300px;
   position: relative;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url('~assets/images/AU.jpeg');
   background-position: center;
   background-size: cover;
 }
@@ -71,42 +66,5 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90vw;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 180vw;
-  background-position: center;
-  background-size: cover;
-}
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-  .post-thumbnail {
-    height: 800px;
-  }
-}
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>
