@@ -26,5 +26,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.admin-post-page {
+  width: 90%;
+  margin: 20px auto;
+}
+@media (min-width: 768px) {
+  .admin-post-page {
+    width: 500px;
+  }
+}
 </style>
