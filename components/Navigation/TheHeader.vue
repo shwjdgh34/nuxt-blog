@@ -9,7 +9,7 @@
       <div class="navigation-items">
         <ul class="nav-list">
           <li class="nav-item">
-            <nuxt-link to="/" exact>Blog</nuxt-link>
+            <nuxt-link to="/posts">Blog</nuxt-link>
           </li>
           <li class="nav-item">
             <nuxt-link to="/about">About</nuxt-link>

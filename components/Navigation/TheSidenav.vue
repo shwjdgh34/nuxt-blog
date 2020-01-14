@@ -5,7 +5,7 @@
       <div v-if="show" class="sidenav">
         <ul class="nav-list" @click="$emit('close')">
           <li class="nav-item">
-            <nuxt-link to="/" exact>Blog</nuxt-link>
+            <nuxt-link to="/posts">Blog</nuxt-link>
           </li>
           <li class="nav-item">
             <nuxt-link to="/about">About</nuxt-link>
