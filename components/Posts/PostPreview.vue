@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/posts/${id}`" class="post-preview">
+  <nuxt-link :to="postLink" class="post-preview">
     <article>
       <!--save images to assets-->
       <!-- style="background-image: url('https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg')" -->
@@ -20,6 +20,10 @@ export default {
       type: String,
       required: true
     },
+    isAdmin: {
+      type: Boolean,
+      required: true
+    },
     title: {
       type: String,
       required: true
@@ -31,6 +35,11 @@ export default {
     thumbnail: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    postLink() {
+      return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id
     }
   }
 }
