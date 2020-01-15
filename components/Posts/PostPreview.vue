@@ -6,7 +6,7 @@
       <div class="post-thumbnail" :style="{backgroundImage: `url(${thumbnail})`}"></div>
       <div class="post-content">
         <h1>{{title}}</h1>
-        <p>{{descript}}</p>
+        <p>{{previewText}}</p>
       </div>
     </article>
   </nuxt-link>
@@ -28,7 +28,7 @@ export default {
       type: String,
       required: true
     },
-    descript: {
+    previewText: {
       type: String,
       required: true
     },

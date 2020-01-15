@@ -51,7 +51,7 @@ export default {
         {
           id: '2',
           title: 'post 2',
-          descript: 'this is the second post',
+          previewText: 'this is the second post',
           thumbnail:
             'https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/b1426e1a5cc005b19ba22962482931b0.jpg'
         }
