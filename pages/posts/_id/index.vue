@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="posts">
-      <h1 class="post-title">Title of the Post</h1>
+      <h1 class="post-title">{{loadedPost.title}}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on xxx</div>
-        <div class="post-detail">Written by Name</div>
+        <div class="post-detail">{{loadedPost.updatedAt}}</div>
+        <div class="post-detail">{{loadedPost.author}}</div>
       </div>
-      <p class="post-content">Content of the post</p>
+      <p class="post-content">{{loadedPost.detailContent}}</p>
     </section>
     <section class="post-feedback">
       <p>
@@ -18,6 +18,29 @@
     </section>
   </div>
 </template>
+<script>
+export default {
+  asyncData(context, callback) {
+    console.log(context.route.params)
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: [
+          {
+            id: '1',
+            title: `post ${context.route.params}`,
+            author: 'jeongho no',
+            updatedAt: new Date(),
+            previewText: 'this is the first post',
+            detailContent: 'detailed content',
+            thumbnail:
+              'https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg'
+          }
+        ]
+      })
+    }, 1000)
+  }
+}
+</script>
 <style scoped>
 .single-post-page {
   padding: 30px;
