@@ -11,17 +11,6 @@ import AdminPostForm from '@/components/Admin/AdminPostForm'
 export default {
   components: {
     AdminPostForm
-  },
-  data() {
-    return {
-      loadedPost: {
-        author: 'nono',
-        title: 'IU',
-        content: 'hi, im jeongho',
-        thumbnailLink:
-          '"https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg"'
-      }
-    }
   }
 }
 </script>
