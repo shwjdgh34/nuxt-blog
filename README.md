@@ -1,22 +1,7 @@
 # nuxt-blog
 
-> My amazing Nuxt.js project
+Aweeeesome reactive nuxt-blog.
 
-## Build Setup
+## Need to fix
 
-``` bash
-# install dependencies
-$ npm run install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+1. when move to /posts route after create a post, dont fetch the newly created post
