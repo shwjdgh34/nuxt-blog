@@ -24,18 +24,16 @@ export default {
     console.log(context.route.params)
     setTimeout(() => {
       callback(null, {
-        loadedPost: [
-          {
-            id: '1',
-            title: `post ${context.route.params}`,
-            author: 'jeongho no',
-            updatedAt: new Date(),
-            previewText: 'this is the first post',
-            detailContent: 'detailed content',
-            thumbnail:
-              'https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg'
-          }
-        ]
+        loadedPost: {
+          id: '1',
+          title: `post ${context.route.params.id}`,
+          author: 'jeongho no',
+          updatedAt: new Date(),
+          previewText: 'this is the first post nono',
+          detailContent: 'detailed content nono',
+          thumbnail:
+            'https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg'
+        }
       })
     }, 1000)
   }
