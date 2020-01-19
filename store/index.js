@@ -1,6 +1,5 @@
 export const actions = {
-  nuxtServerInit({ commit }) {
-    console.log('nonobabo')
+  nuxtServerInit({ commit }, context) {
     commit('post/setPosts', [
       {
         id: '1',

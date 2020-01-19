@@ -4,14 +4,14 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import PostList from '@/components/Posts/PostList.vue'
 export default {
   components: {
     PostList
   },
   computed: {
-    ...mapGetters('post', ['loadedPosts'])
+    ...mapState('post', ['loadedPosts'])
   }
 }
 </script>
