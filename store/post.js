@@ -12,7 +12,7 @@ export const actions = {
   }
 }
 export const getters = {
-  setPosts(state) {
+  loadedPosts(state) {
     return state.loadedPosts
   }
 }
