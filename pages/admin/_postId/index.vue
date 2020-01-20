@@ -18,19 +18,15 @@ export default {
       .get(
         `https://nuxt-blog-50ca9.firebaseio.com/posts/${context.route.params.postId}.json`
       )
-      .then(({ data }) => {
-        return { loadedPost: data }
+      .then(res => {
+        return { loadedPost: { ...res.data, id: context.params.postId } }
       })
   },
   methods: {
     onSubmitted(editedPost) {
-      axios
-        .put(
-          `https://nuxt-blog-50ca9.firebaseio.com/posts/${this.$route.params.postId}.json`,
-          { ...editedPost, updatedAt: new Date() }
-        )
-        .then(console.log)
-        .catch(console.log)
+      this.$store
+        .dispatch('post/editPost', editedPost)
+        .then(() => this.$router.push('/admin'))
     }
   }
 }

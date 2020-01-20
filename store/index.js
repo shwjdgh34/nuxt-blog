@@ -6,7 +6,6 @@ export const actions = {
       .then(({ data }) => {
         let postArray = []
         for (const key in data) {
-          console.log('nono', key)
           postArray.push({ ...data[key], id: key })
         }
         commit('post/setPosts', postArray)
