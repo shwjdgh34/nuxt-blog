@@ -1,41 +1,35 @@
 <template>
   <div class="single-post-page">
     <section class="posts">
-      <h1 class="post-title">{{loadedPost.title}}</h1>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">{{loadedPost.updatedAt}}</div>
-        <div class="post-detail">{{loadedPost.author}}</div>
+        <div class="post-detail">{{ loadedPost.updatedAt }}</div>
+        <div class="post-detail">{{ loadedPost.author }}</div>
       </div>
-      <p class="post-content">{{loadedPost.detailContent}}</p>
+      <p class="post-content">{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p>
         Let me know what you think about the post, send a mail to
-        <a
-          href="mailto:nossi8128@gmail.com"
-        >nossi8128@gmail.com</a>
+        <a href="mailto:nossi8128@gmail.com">nossi8128@gmail.com</a>
       </p>
     </section>
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-  asyncData(context, callback) {
-    console.log(context.route.params)
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: '1',
-          title: `post ${context.route.params.id}`,
-          author: 'jeongho no',
-          updatedAt: new Date(),
-          previewText: 'this is the first post nono',
-          detailContent: 'detailed content nono',
-          thumbnail:
-            'https://image.fmkorea.com/files/attach/new/20190916/2063168106/1524368855/2190443186/f87ba14f24b231dec02134f7f9577cbb.jpg'
+  asyncData(context) {
+    return axios
+      .get(
+        `https://nuxt-blog-50ca9.firebaseio.com/posts/${context.route.params.id}.json`
+      )
+      .then(({ data }) => {
+        return {
+          loadedPost: data
         }
       })
-    }, 1000)
+      .catch(e => console.log(e))
   }
 }
 </script>

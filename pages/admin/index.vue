@@ -1,11 +1,13 @@
 <template>
   <div class="admin-page">
     <section class="new-post">
-      <AppButton type="button" @click="$router.push('/admin/new-post')">Create Post</AppButton>
+      <AppButton type="button" @click="$router.push('/admin/new-post')"
+        >Create Post</AppButton
+      >
     </section>
     <section class="existing-posts">
       <h1>existing posts</h1>
-      <PostList isAdmin />
+      <PostList isAdmin :posts="loadedPosts" />
     </section>
   </div>
 </template>
@@ -13,11 +15,14 @@
 <script>
 import PostList from '@/components/Posts/PostList.vue'
 import AppButton from '@/components/UI/AppButton.vue'
-
+import { mapState } from 'vuex'
 export default {
   components: {
     PostList,
     AppButton
+  },
+  computed: {
+    ...mapState('post', ['loadedPosts'])
   }
 }
 </script>
