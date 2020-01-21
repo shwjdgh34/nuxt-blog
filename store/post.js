@@ -1,4 +1,3 @@
-import axios from 'axios'
 export const state = () => ({
   loadedPosts: []
 })
@@ -26,9 +25,9 @@ export const actions = {
       ...post,
       updatedAt: new Date()
     }
-    return axios
-      .post(`${process.env.BASE_URL}/posts.json`, createdPost)
-      .then(res => commit('addPost', { ...createdPost, id: res.data.name }))
+    return this.$axios
+      .$post(`/posts.json`, createdPost)
+      .then(data => commit('addPost', { ...createdPost, id: data.name }))
       .catch(console.log)
   },
   editPost({ commit }, post) {
@@ -36,9 +35,9 @@ export const actions = {
       ...post,
       updatedAt: new Date()
     }
-    return axios
-      .put(`${process.env.BASE_URL}/posts/${editedPost.id}.json`, editedPost)
-      .then(res => commit('editPost', { ...editedPost }))
+    return this.$axios
+      .$put(`/posts/${editedPost.id}.json`, editedPost)
+      .then(commit('editPost', { ...editedPost }))
       .catch(console.log)
   }
 }

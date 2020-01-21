@@ -17,17 +17,16 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   asyncData(context) {
-    return axios
-      .get(`${process.env.BASE_URL}/posts/${context.route.params.id}.json`)
-      .then(({ data }) => {
+    return context.$axios
+      .$get(`/posts/${context.route.params.id}.json`)
+      .then(data => {
         return {
           loadedPost: data
         }
       })
-      .catch(e => console.log(e))
+      .catch(console.log)
   }
 }
 </script>
