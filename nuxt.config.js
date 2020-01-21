@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~assets/styles/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -47,5 +47,23 @@ export default {
   },
   env: {
     BASE_URL: 'https://nuxt-blog-50ca9.firebaseio.com'
+  },
+  // route config
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '*',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
+    }
+  },
+
+  transition: {
+    name: 'fade',
+    mode: 'out-in',
+    beforeEnter(el) {
+      // el => 페이지 컴포넌트 DOM 객체
+      console.log('페이지 트랜지션 진입', el)
+    }
   }
 }

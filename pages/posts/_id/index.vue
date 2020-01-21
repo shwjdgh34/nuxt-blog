@@ -20,7 +20,6 @@
 import axios from 'axios'
 export default {
   asyncData(context) {
-    console.log('nono')
     return axios
       .get(`${process.env.BASE_URL}/posts/${context.route.params.id}.json`)
       .then(({ data }) => {
