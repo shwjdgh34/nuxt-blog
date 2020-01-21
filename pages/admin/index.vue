@@ -13,14 +13,8 @@
 </template>
 
 <script>
-import PostList from '@/components/Posts/PostList.vue'
-import AppButton from '@/components/UI/AppButton.vue'
 import { mapState } from 'vuex'
 export default {
-  components: {
-    PostList,
-    AppButton
-  },
   computed: {
     ...mapState('post', ['loadedPosts'])
   }
