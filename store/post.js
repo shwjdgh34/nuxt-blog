@@ -27,7 +27,7 @@ export const actions = {
       updatedAt: new Date()
     }
     return axios
-      .post('https://nuxt-blog-50ca9.firebaseio.com/posts.json', createdPost)
+      .post(`${process.env.BASE_URL}/posts.json`, createdPost)
       .then(res => commit('addPost', { ...createdPost, id: res.data.name }))
       .catch(console.log)
   },
@@ -37,10 +37,7 @@ export const actions = {
       updatedAt: new Date()
     }
     return axios
-      .put(
-        `https://nuxt-blog-50ca9.firebaseio.com/posts/${editedPost.id}.json`,
-        editedPost
-      )
+      .put(`${process.env.BASE_URL}/posts/${editedPost.id}.json`, editedPost)
       .then(res => commit('editPost', { ...editedPost }))
       .catch(console.log)
   }
