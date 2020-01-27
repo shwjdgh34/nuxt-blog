@@ -4,4 +4,6 @@ Aweeeesome reactive nuxt-blog.
 
 ## Need to fix
 
-1. when move to /posts route after create a post, dont fetch the newly created post
+1. [o] when move to /posts route after create a post, this cant fetch the newly created post
+2. [ ] hide the firebase url
+3. [ ] check whether base email address is @childly or not. Filter if not.
