@@ -7,6 +7,8 @@
 <script>
 import AdminPostForm from '@/components/Admin/AdminPostForm.vue'
 export default {
+  layout: 'admin',
+  middleware: 'auth',
   components: {
     AdminPostForm
   },

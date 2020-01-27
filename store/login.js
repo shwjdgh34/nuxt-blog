@@ -1,5 +1,5 @@
 export const state = () => ({
-  token: ''
+  token: null
 })
 
 export const mutations = {
@@ -25,5 +25,10 @@ export const actions = {
         commit('setToken', res.idToken)
       })
       .catch(console.log)
+  }
+}
+export const getters = {
+  isAuthenticated(state) {
+    return state.token != null
   }
 }

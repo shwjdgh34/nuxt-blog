@@ -20,23 +20,27 @@ export const actions = {
   setPosts({ commit }, posts) {
     commit('setPosts', posts)
   },
-  addPost({ commit }, post) {
+  addPost({ commit, rootState }, post) {
     const createdPost = {
       ...post,
       updatedAt: new Date()
     }
+    // console.log('nono', rootState.login.token)
     return this.$axios
-      .$post(`/posts.json`, createdPost)
+      .$post(`/posts.json?auth=${rootState.login.token}`, createdPost)
       .then(data => commit('addPost', { ...createdPost, id: data.name }))
       .catch(console.log)
   },
-  editPost({ commit }, post) {
+  editPost({ commit, rootState }, post) {
     const editedPost = {
       ...post,
       updatedAt: new Date()
     }
     return this.$axios
-      .$put(`/posts/${editedPost.id}.json`, editedPost)
+      .$put(
+        `/posts/${editedPost.id}.json?auth=${rootState.login.token}`,
+        editedPost
+      )
       .then(commit('editPost', { ...editedPost }))
       .catch(console.log)
   }
