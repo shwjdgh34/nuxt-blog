@@ -14,7 +14,7 @@
 import { mapState } from 'vuex'
 export default {
   layout: 'admin',
-  middleware: 'auth',
+  middleware: ['check-auth', 'auth'],
   computed: {
     ...mapState('post', ['loadedPosts'])
   }
