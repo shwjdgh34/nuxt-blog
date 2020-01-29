@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie'
 export const state = () => ({
   token: null
 })
@@ -27,29 +28,48 @@ export const actions = {
       .then(res => {
         console.log('nono- getTime()', new Date().getTime())
         console.log('nono- date()', new Date())
+        console.log(res.expiresIn)
         commit('setToken', res.idToken)
+        // res.expiresIn = 3600ms = 3.6second
+        // res.expiresIn*1000 = one hour
+        // firebase disconnect after 3600second
         localStorage.setItem('token', res.idToken)
         localStorage.setItem(
           'tokenExipration',
-          new Date().getTime() + res.expiresIn * 1000
+          new Date().getTime() + Number.parseInt(res.expiresIn * 1000)
         )
-        dispatch('setLogOutTimer', res.expiresIn * 1000)
+        Cookie.set('jwt', res.idToken)
+        Cookie.set(
+          'tokenExipration',
+          new Date().getTime() + Number.parseInt(res.expiresIn * 1000)
+        )
       })
       .catch(console.log)
   },
-  setLogOutTimer({ commit }, duration) {
-    setTimeout(() => {
-      commit('clearToken')
-    }, duration)
-  },
-  initAuth({ commit, dispatch }) {
-    const token = localStorage.getItem('token')
-    // it may convert expirationDate type to strig. So reconvert to number by adding + front of exiprationta
-    const expirationDate = localStorage.getItem('tokenExipration')
+  initAuth({ commit, dispatch }, req) {
+    let token
+    let expirationDate
+    if (req) {
+      if (!req.headers.cookie) return
+      const jwtCookie = req.headers.cookie
+        .split(';')
+        .find(c => c.trim().startsWith('jwt='))
+      if (!jwtCookie) return
+      token = jwtCookie.split('=')[1]
+      expirationDate = req.headers.cookie
+        .split(';')
+        .find(c => c.trim().startsWith('tokenExipration'))
+        .split('=')[1]
+    } else {
+      token = localStorage.getItem('token')
+      // it may convert expirationDate type to strig. So reconvert to number by adding + front of exiprationta
+      expirationDate = localStorage.getItem('tokenExipration')
+    }
     if (new Date().getTime() > +expirationDate || !token) {
+      console.log('No token or invalid token')
+      commit('clearToken')
       return
     }
-    dispatch('setLogOutTimer', +expirationDate - new Date().getTime())
     commit('setToken', token)
   }
 }
