@@ -1,6 +1,5 @@
 const express = require('express')
-const router = express.router()
-
+const router = express.Router()
 const app = express()
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)
@@ -11,7 +10,7 @@ router.use((req, res, next) => {
 })
 
 router.post('/track-data', (req, res) => {
-  console.log('stored data!', req.body.data)
+  console.log('Track-data!', req.body.data)
   res.status(200).json({ message: 'success' })
 })
 

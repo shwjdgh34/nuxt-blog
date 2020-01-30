@@ -35,9 +35,6 @@ export const actions = {
         returnSecureToken: true
       })
       .then(res => {
-        console.log('nono- getTime()', new Date().getTime())
-        console.log('nono- date()', new Date())
-        console.log(res.expiresIn)
         commit('setToken', res.idToken)
         // res.expiresIn = 3600ms = 3.6second
         // res.expiresIn*1000 = one hour
@@ -52,6 +49,9 @@ export const actions = {
           'tokenExipration',
           new Date().getTime() + Number.parseInt(res.expiresIn * 1000)
         )
+        return this.$axios.$post('http://localhost:3000/api/track-data', {
+          data: 'Authenticated!'
+        })
       })
       .catch(console.log)
   },

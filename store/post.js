@@ -25,7 +25,6 @@ export const actions = {
       ...post,
       updatedAt: new Date()
     }
-    // console.log('nono', rootState.login.token)
     return this.$axios
       .$post(`/posts.json?auth=${rootState.login.token}`, createdPost)
       .then(data => commit('addPost', { ...createdPost, id: data.name }))
