@@ -12,6 +12,15 @@ export const mutations = {
   }
 }
 export const actions = {
+  logOut({ commit }) {
+    commit('clearToken')
+    Cookie.remove('jwt')
+    Cookie.remove('expirationDate')
+    if (process.client) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('tokenExipration')
+    }
+  },
   authenticateUser({ commit, dispatch }, authData) {
     let authURL =
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWW3ukXZJkSsm6Vr08zjxZRveCEwSJhl4'
@@ -67,7 +76,7 @@ export const actions = {
     }
     if (new Date().getTime() > +expirationDate || !token) {
       console.log('No token or invalid token')
-      commit('clearToken')
+      dispatch('logOut')
       return
     }
     commit('setToken', token)

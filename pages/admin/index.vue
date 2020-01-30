@@ -1,7 +1,10 @@
 <template>
   <div class="admin-page">
     <section class="new-post">
-      <AppButton type="button" @click="$router.push('/admin/new-post')">Create Post</AppButton>
+      <AppButton type="button" @click="$router.push('/admin/new-post')"
+        >Create Post</AppButton
+      >
+      <AppButton type="button" @click="onLogOut">Log Out</AppButton>
     </section>
     <section class="existing-posts">
       <h1>existing posts</h1>
@@ -13,10 +16,16 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  layout: 'admin',
+  // layout: 'admin',
   middleware: ['check-auth', 'auth'],
   computed: {
     ...mapState('post', ['loadedPosts'])
+  },
+  methods: {
+    onLogOut() {
+      this.$store.dispatch('login/logOut')
+      this.$router.push('/admin/auth')
+    }
   }
 }
 </script>
