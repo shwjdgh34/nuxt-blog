@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+
 export default {
   mode: 'universal',
   /*
@@ -66,5 +68,6 @@ export default {
       // el => 페이지 컴포넌트 DOM 객체
       //console.log('페이지 트랜지션 진입', el)
     }
-  }
+  },
+  serverMiddleware: [bodyParser.json(), '~/api']
 }
