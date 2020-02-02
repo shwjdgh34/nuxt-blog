@@ -69,7 +69,7 @@ export const actions = {
         .split(';')
         .find(c => c.trim().startsWith('tokenExipration'))
         .split('=')[1]
-    } else {
+    } else if (process.client) {
       token = localStorage.getItem('token')
       // it may convert expirationDate type to strig. So reconvert to number by adding + front of exiprationta
       expirationDate = localStorage.getItem('tokenExipration')
